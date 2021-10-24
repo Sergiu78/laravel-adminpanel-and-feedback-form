@@ -2,9 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\StoreRequest;
 use App\Models\User;
-use Illuminate\Http\Request;
+use App\Models\Message;
+
 
 class HomeController extends Controller
 {
@@ -25,16 +25,17 @@ class HomeController extends Controller
      */
     public function index()
     {
+        $messages = Message::get();
         if((int) auth()->user()->role !== User::ROLE_ADMIN)
         {
+            
             return view('home');
         }
-        return view('panel');
+       
+        return view('panel', compact('messages'));
     }
 
-    public function store(StoreRequest $request)
-    {
-        return view('');
-    }
+   
+    
 
 }

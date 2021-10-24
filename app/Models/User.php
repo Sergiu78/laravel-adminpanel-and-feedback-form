@@ -21,6 +21,13 @@ class User extends Authenticatable
             self::ROLE_USER => 'client',
         ];
     }
+     /**
+     * Создаем связь один ко многим с таблицей messages
+     */
+    public function message()
+    {
+        return $this->hasMany(Message::class);
+    }
 
     /**
      * The attributes that are mass assignable.

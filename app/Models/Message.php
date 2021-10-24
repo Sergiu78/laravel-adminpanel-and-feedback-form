@@ -9,7 +9,14 @@ class Message extends Model
 {
     use HasFactory;
 
-    protected $fillable = false;
+    protected $fillable = ['theme', 'text', 'file', 'user_id'];
 
-    
+     /**
+     * создаем связь один к одному с таблицей users
+     */
+
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
 }

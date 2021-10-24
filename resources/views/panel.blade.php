@@ -1,35 +1,36 @@
 @extends('layouts.app')
 
 @section('content')
-
-<table class="table">
+<div class="container">
+  <table class="table">
     <thead class="thead-dark">
       <tr>
         <th scope="col">#</th>
         <th scope="col">Имя</th>
-        <th scope="col">Фамилия</th>
-        <th scope="col">Username</th>
+        <th scope="col">EMail</th>
+        <th scope="col">Тема сообщения</th>
+        <th scope="col">Сообщение</th>
+        <th scope="col">Ссылка на файл</th>
+        <th scope="col">Дата создания</th>
       </tr>
     </thead>
     <tbody>
+      @foreach ($messages as $message)
       <tr>
-        <th scope="row">1</th>
-        <td>Mark</td>
-        <td>Otto</td>
-        <td>@mdo</td>
+        <th scope="row">{{ $message->id }}</th>
+        <td>{{ $message->user->name }}</td>
+        <td>{{ $message->user->email }}</td>
+        <td>{{ $message->theme }}</td>
+        <td>{{ $message->text }}</td>
+        <td><a href="{{ asset('/storage/file/messages/'.$message->file) }}"><img  height="50px" src="{{ asset('/storage/file/messages/'.$message->file) }}"/></a></td>
+        <td>{{ $message->created_at }}</td>
       </tr>
-      <tr>
-        <th scope="row">2</th>
-        <td>Jacob</td>
-        <td>Thornton</td>
-        <td>@fat</td>
-      </tr>
-      <tr>
-        <th scope="row">3</th>
-        <td>Larry</td>
-        <td>the Bird</td>
-        <td>@twitter</td>
-      </tr>
+        @endforeach
+      
     </tbody>
   </table>
+  
+  </div>
+</div>
+
   @endsection

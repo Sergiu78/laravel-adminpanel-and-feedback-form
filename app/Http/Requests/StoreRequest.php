@@ -28,6 +28,7 @@ class StoreRequest extends FormRequest
             'text' => 'required|string',
             'file' => 'required|file',
         ];
+        
     }
 
     public function messages()
